@@ -1,0 +1,100 @@
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0b2f73;
+}
+
+.symbol {
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.text {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  line-height: 1;
+}
+
+.top {
+  margin-left: 5px;
+  color: #0b2f73;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.name {
+  display: flex;
+  align-items: baseline;
+  color: #f8b400;
+  font-size: 1.12rem;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.name strong {
+  color: #0b2f73;
+  font-size: 1.03em;
+  font-weight: 900;
+  letter-spacing: -0.07em;
+}
+
+.tagline {
+  color: #0b2f73;
+  font-size: 0.46rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.hero {
+  transform-origin: left center;
+}
+
+.hero .symbol {
+  width: 52px;
+  height: 52px;
+}
+
+.hero .name {
+  font-size: 1.28rem;
+}
+
+.hero .tagline {
+  font-size: 0.52rem;
+}
+
+.compact {
+  gap: 6px;
+}
+
+.compact .symbol {
+  width: 34px;
+  height: 34px;
+}
+
+.compact .top {
+  font-size: 0.5rem;
+}
+
+.compact .name {
+  font-size: 1rem;
+}
+
+.compact .tagline {
+  font-size: 0.4rem;
+}
+
+@media (max-width: 360px) {
+  .compact .tagline {
+    display: none;
+  }
+
+  .hero .tagline {
+    font-size: 0.48rem;
+  }
+}

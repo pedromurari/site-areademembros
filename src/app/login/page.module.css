@@ -23,8 +23,9 @@
 }
 
 .logo {
-  width: 160px;
-  height: auto;
+  display: inline-flex;
+  width: auto;
+  max-width: 100%;
 }
 
 .heading h1 {

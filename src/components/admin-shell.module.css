@@ -17,11 +17,14 @@
 
 .sidebarBrand {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   padding: 8px 10px 16px;
 }
 
-.logo { width: 148px; height: auto; }
+.sidebarWordmark {
+  transform: scale(0.9);
+  transform-origin: center;
+}
 .sidebarNav { display: grid; gap: 8px; }
 
 .navItem,

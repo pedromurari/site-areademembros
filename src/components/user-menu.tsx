@@ -7,7 +7,11 @@ import { createClient } from "@/lib/supabase/client";
 import { getDisplayInitial, getDisplayName } from "@/lib/user-identity";
 import styles from "./user-menu.module.css";
 
-function MenuIcon({ kind }: { kind: "student" | "profile" | "settings" | "courses" | "platforms" | "logout" }) {
+function MenuIcon({
+  kind,
+}: {
+  kind: "student" | "profile" | "settings" | "courses" | "platforms" | "logout";
+}) {
   const common = {
     width: 18,
     height: 18,
@@ -91,9 +95,13 @@ function BellIcon() {
 export function UserMenu({
   userEmail,
   userName,
+  mode,
+  canAccessAdmin,
 }: {
   userEmail: string;
   userName?: string;
+  mode: "student" | "admin";
+  canAccessAdmin: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -102,6 +110,12 @@ export function UserMenu({
 
   const displayName = getDisplayName(userEmail, userName);
   const initial = getDisplayInitial(userEmail, userName);
+  const primaryAction =
+    mode === "admin"
+      ? { href: "/dashboard", label: "Ver como Aluno" }
+      : canAccessAdmin
+        ? { href: "/admin", label: "Ver como ADM" }
+        : null;
 
   useEffect(() => {
     function onPointerDown(event: MouseEvent) {
@@ -161,10 +175,12 @@ export function UserMenu({
           </div>
 
           <nav className={styles.menuList}>
-            <Link href="/dashboard" className={styles.menuItem} onClick={() => setOpen(false)}>
-              <span className={styles.iconWrap}><MenuIcon kind="student" /></span>
-              Ver como Aluno
-            </Link>
+            {primaryAction ? (
+              <Link href={primaryAction.href} className={styles.menuItem} onClick={() => setOpen(false)}>
+                <span className={styles.iconWrap}><MenuIcon kind="student" /></span>
+                {primaryAction.label}
+              </Link>
+            ) : null}
             <Link href="/dashboard/perfil" className={styles.menuItem} onClick={() => setOpen(false)}>
               <span className={styles.iconWrap}><MenuIcon kind="profile" /></span>
               Meu Perfil

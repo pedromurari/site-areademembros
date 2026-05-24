@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { IdmWordmark } from "@/components/idm-wordmark";
 import styles from "./page.module.css";
 import { LoginForm } from "@/components/login-form";
 import { DEV_LOGIN } from "@/lib/dev-auth";
@@ -24,14 +25,9 @@ export default async function LoginPage() {
       <section className={styles.shell}>
         <div className={styles.formSide}>
           <div className={styles.formWrap}>
-            <Image
-              src="/logo-despertamente.png"
-              alt="Instituto Despertamente"
-              width={240}
-              height={88}
-              className={styles.logo}
-              priority
-            />
+            <div className={styles.logo} aria-label="Instituto Despertamente">
+              <IdmWordmark />
+            </div>
 
             <div className={styles.heading}>
               <h1>Entrar na sua conta</h1>

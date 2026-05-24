@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
+import { IdmWordmark } from "@/components/idm-wordmark";
 import { UserMenu } from "@/components/user-menu";
 import styles from "./admin-shell.module.css";
 
@@ -32,13 +32,7 @@ export function AdminShell({
     <main className={styles.page}>
       <aside className={styles.sidebar}>
         <div className={styles.sidebarBrand}>
-          <Image
-            src="/logo-despertamente.png"
-            alt="Instituto Despertamente"
-            width={148}
-            height={62}
-            className={styles.logo}
-          />
+          <IdmWordmark compact className={styles.sidebarWordmark} />
         </div>
 
         <nav className={styles.sidebarNav}>
@@ -66,7 +60,7 @@ export function AdminShell({
           </div>
 
           <div className={styles.topbarActions}>
-            <UserMenu userEmail={userEmail} userName={userName} />
+            <UserMenu userEmail={userEmail} userName={userName} mode="admin" canAccessAdmin />
           </div>
         </header>
 

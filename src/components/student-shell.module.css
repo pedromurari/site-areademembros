@@ -21,9 +21,9 @@
   padding: 8px 10px 16px;
 }
 
-.logo {
-  width: 96px;
-  height: auto;
+.sidebarWordmark {
+  transform: scale(0.9);
+  transform-origin: center;
 }
 
 .sidebarNav {

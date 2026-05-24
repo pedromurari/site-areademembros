@@ -1,7 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
+import { IdmWordmark } from "@/components/idm-wordmark";
 import { UserMenu } from "@/components/user-menu";
+import { createClient } from "@/lib/supabase/server";
+import { resolvePortalAccess } from "@/lib/portal-access";
 import styles from "./student-shell.module.css";
 
 const navItems = [
@@ -11,7 +13,7 @@ const navItems = [
   { label: "Aulas Ao Vivo", href: "/dashboard/aulas-ao-vivo", icon: "A" },
 ];
 
-export function StudentShell({
+export async function StudentShell({
   activeHref,
   userEmail,
   userName,
@@ -22,17 +24,14 @@ export function StudentShell({
   userName?: string;
   children: ReactNode;
 }) {
+  const supabase = await createClient();
+  const access = await resolvePortalAccess(supabase, userEmail);
+
   return (
     <main className={styles.page} data-student-shell>
       <aside className={styles.sidebar} data-student-sidebar>
         <div className={styles.sidebarBrand}>
-          <Image
-            src="/despertamente-simbolo.png"
-            alt="Instituto Despertamente"
-            width={148}
-            height={148}
-            className={styles.logo}
-          />
+          <IdmWordmark compact className={styles.sidebarWordmark} />
         </div>
 
         <nav className={styles.sidebarNav}>
@@ -72,22 +71,7 @@ export function StudentShell({
           </details>
 
           <Link href="/dashboard" className={styles.mobileBrand} aria-label="Portal do Aluno IDM">
-            <Image
-              src="/despertamente-simbolo.png"
-              alt=""
-              width={52}
-              height={52}
-              className={styles.mobileLogoSymbol}
-              aria-hidden="true"
-            />
-            <span className={styles.mobileLogoText} aria-hidden="true">
-              <span className={styles.mobileLogoTop}>Instituto</span>
-              <span className={styles.mobileLogoName}>
-                <span>desperta</span>
-                <strong>MENTE</strong>
-              </span>
-              <span className={styles.mobileLogoTagline}>Psicanalise - PNL - Terapia Breve</span>
-            </span>
+            <IdmWordmark compact />
           </Link>
 
           <div className={styles.searchWrap}>
@@ -110,7 +94,12 @@ export function StudentShell({
           </details>
 
           <div className={styles.topbarActions}>
-            <UserMenu userEmail={userEmail} userName={userName} />
+            <UserMenu
+              userEmail={userEmail}
+              userName={userName}
+              mode="student"
+              canAccessAdmin={access.canAccessAdmin}
+            />
           </div>
         </header>
 
