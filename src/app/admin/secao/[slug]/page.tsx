@@ -2,10 +2,13 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { AdminShell } from "@/components/admin-shell";
+import { AdminNavigationManager } from "@/components/admin-navigation-manager";
 import { DEV_LOGIN } from "@/lib/dev-auth";
+import { readLocalAdminNavigation } from "@/lib/admin-navigation";
 import { getAdminSectionBySlug } from "@/lib/platform-data";
 import {
   inspectPortalTables,
+  loadAdminNavigation,
   loadBanners,
   loadCombos,
   loadEngagementHighlights,
@@ -25,6 +28,7 @@ type SectionData = {
   combos: Awaited<ReturnType<typeof loadCombos>>["data"];
   comments: Awaited<ReturnType<typeof loadModerationComments>>["data"];
   engagement: Awaited<ReturnType<typeof loadEngagementHighlights>>["data"];
+  navigation: Awaited<ReturnType<typeof loadAdminNavigation>>["data"];
   missingTables: string[];
 };
 
@@ -189,6 +193,9 @@ function renderSectionBody(slug: string, data: SectionData) {
         </>
       );
 
+    case "navegacao":
+      return <AdminNavigationManager items={data.navigation} />;
+
     case "gamificacao":
       return (
         <div className={styles.grid}>
@@ -246,6 +253,10 @@ export default async function AdminSectionPage({
     inspectPortalTables(supabase),
   ]);
 
+  const navigation = devSession
+    ? (await readLocalAdminNavigation()) ?? (await loadAdminNavigation(supabase)).data
+    : (await loadAdminNavigation(supabase)).data;
+
   const missingTables = checks.filter((item) => item.missing).map((item) => item.table);
 
   return (
@@ -282,6 +293,7 @@ export default async function AdminSectionPage({
           combos: combos.data,
           comments: comments.data,
           engagement: engagement.data,
+          navigation,
           missingTables,
         })}
       </section>

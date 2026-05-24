@@ -1,0 +1,175 @@
+.panel {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(15, 34, 51, 0.05);
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+}
+
+.header p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hint {
+  color: #0b3b8c;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.secondaryButton,
+.primaryButton {
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.secondaryButton {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #233044;
+}
+
+.primaryButton {
+  border: 0;
+  background: #0b3b8c;
+  color: #ffffff;
+}
+
+.primaryButton:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 40px 40px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #f8fafc;
+}
+
+.order {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #0b3b8c;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f7faff, #edf3ff);
+  color: #0b3b8c;
+}
+
+.icon svg {
+  display: block;
+}
+
+.content {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.content strong {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.content span {
+  color: #6b7280;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.controlButton {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0b3b8c;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.controlButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.status {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #eff6ff;
+  color: #0b3b8c;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.error {
+  background: #fef2f2;
+  color: #b42318;
+}
+
+@media (max-width: 760px) {
+  .item {
+    grid-template-columns: 36px 36px minmax(0, 1fr);
+  }
+
+  .controls {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}

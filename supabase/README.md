@@ -2,6 +2,7 @@ Use estes arquivos no SQL Editor do Supabase, nesta ordem:
 
 1. `001_portal_schema.sql`
 2. `002_portal_seed.sql`
+3. `003_admin_navigation.sql`
 
 Depois disso, o portal passa a ler do Supabase as tabelas:
 
@@ -12,6 +13,7 @@ Depois disso, o portal passa a ler do Supabase as tabelas:
 - `live_classes`
 - `certificates`
 - `certificate_rules`
+- `admin_navigation_items`
 
 Observacoes:
 

@@ -3,7 +3,13 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { AdminShell } from "@/components/admin-shell";
 import { DEV_LOGIN } from "@/lib/dev-auth";
-import { inspectPortalTables, loadBanners, loadStudentCourses } from "@/lib/supabase/platform";
+import { readLocalAdminNavigation } from "@/lib/admin-navigation";
+import {
+  inspectPortalTables,
+  loadAdminNavigation,
+  loadBanners,
+  loadStudentCourses,
+} from "@/lib/supabase/platform";
 import { createClient } from "@/lib/supabase/server";
 import styles from "./page.module.css";
 
@@ -27,6 +33,9 @@ export default async function AdminPage() {
 
   const { data: courses, source: courseSource } = await loadStudentCourses(supabase);
   const { data: banners } = await loadBanners(supabase);
+  const navigation = devSession
+    ? (await readLocalAdminNavigation()) ?? (await loadAdminNavigation(supabase)).data
+    : (await loadAdminNavigation(supabase)).data;
   const tableChecks = await inspectPortalTables(supabase);
   const missingTables = tableChecks.filter((item) => item.missing);
 
@@ -113,6 +122,17 @@ export default async function AdminPage() {
                 <strong>Gestao de alunos e permissoes</strong>
               </Link>
               <p>Estrutura pronta para ligarmos usuarios, planos, turmas e cursos no Supabase.</p>
+            </article>
+
+            <article className={styles.managementCard}>
+              <span>Menu lateral</span>
+              <Link href="/admin/secao/navegacao">
+                <strong>Ordem e icones do painel</strong>
+              </Link>
+              <p>
+                Reordene o menu lateral do ADM, troque a sequencia e confirme {navigation.length} item(ns)
+                configuraveis.
+              </p>
             </article>
 
             <article className={styles.managementCard}>

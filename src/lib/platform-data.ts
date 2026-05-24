@@ -1,3 +1,7 @@
+import type { AdminNavigationItem } from "@/lib/admin-navigation-types";
+import { defaultAdminNavigationItems } from "@/lib/admin-navigation";
+export type { AdminNavigationItem } from "@/lib/admin-navigation-types";
+
 export type LessonItem = {
   slug: string;
   title: string;
@@ -166,6 +170,11 @@ export function getStudentCourseBySlug(slug: string) {
 
 export const adminSections = [
   {
+    slug: "navegacao",
+    title: "Menu lateral",
+    description: "Reordene os menus do ADM, troque os icones e defina a visibilidade de cada item.",
+  },
+  {
     slug: "painel-engajamento",
     title: "Painel de Engajamento",
     description: "Acompanhe progresso, participacao e movimentacao dos alunos por curso e por turma.",
@@ -215,6 +224,8 @@ export const adminSections = [
 export function getAdminSectionBySlug(slug: string) {
   return adminSections.find((section) => section.slug === slug);
 }
+
+export const adminNavigationItems: AdminNavigationItem[] = defaultAdminNavigationItems;
 
 export const liveClasses = [
   {

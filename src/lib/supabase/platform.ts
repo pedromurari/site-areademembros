@@ -7,16 +7,19 @@ import {
 } from "@/lib/certificate-data";
 import {
   adminMembers as fallbackMembers,
+  adminNavigationItems as fallbackAdminNavigation,
   comboItems as fallbackCombos,
   engagementHighlights as fallbackEngagement,
   liveClasses as fallbackLiveClasses,
   mediaBanners as fallbackBanners,
   moderationComments as fallbackComments,
   studentCourses as fallbackCourses,
+  type AdminNavigationItem,
   type CourseItem,
   type LessonItem,
   type ModuleItem,
 } from "@/lib/platform-data";
+import type { AdminMenuIconKind } from "@/lib/admin-navigation-types";
 
 export type DataSource = "supabase" | "fallback";
 
@@ -108,6 +111,16 @@ type CertificateRow = {
   delivery_message?: string | null;
   release_window?: string | null;
   lessons?: string[] | null;
+};
+
+type AdminNavigationRow = {
+  id?: string;
+  slug: string;
+  label: string;
+  href: string;
+  icon_key: AdminMenuIconKind | null;
+  sort_order: number | null;
+  is_visible: boolean | null;
 };
 
 function isMissingRelationError(message?: string) {
@@ -272,6 +285,34 @@ export async function loadBanners(supabase: SupabaseClient) {
   };
 }
 
+export async function loadAdminNavigation(
+  supabase: SupabaseClient,
+): Promise<PlatformResult<AdminNavigationItem[]>> {
+  const { data, error } = await supabase
+    .from("admin_navigation_items")
+    .select("*")
+    .order("sort_order", { ascending: true });
+
+  if (error) {
+    return fallbackResult(fallbackAdminNavigation, error.message);
+  }
+
+  if (!data || data.length === 0) {
+    return fallbackResult(fallbackAdminNavigation, "Tabela admin_navigation_items sem dados.");
+  }
+
+  const mapped = (data as AdminNavigationRow[]).map((item, index) => ({
+    slug: item.slug,
+    label: item.label,
+    href: item.href,
+    iconKey: item.icon_key ?? "home",
+    sortOrder: Number.isFinite(item.sort_order ?? NaN) ? (item.sort_order as number) : index + 1,
+    isVisible: item.is_visible !== false,
+  }));
+
+  return { data: mapped, source: "supabase" };
+}
+
 export async function loadCertificatesForEmail(
   supabase: SupabaseClient,
   email: string,
@@ -360,7 +401,15 @@ export async function loadCombos() {
 }
 
 export async function inspectPortalTables(supabase: SupabaseClient) {
-  const tables = ["courses", "modules", "lessons", "banners", "certificates", "live_classes"];
+  const tables = [
+    "courses",
+    "modules",
+    "lessons",
+    "banners",
+    "certificates",
+    "live_classes",
+    "admin_navigation_items",
+  ];
   const checks = await Promise.all(
     tables.map(async (table) => {
       const { error } = await supabase.from(table).select("*").limit(1);
