@@ -1,0 +1,204 @@
+.page {
+  padding: 28px;
+  display: grid;
+  gap: 22px;
+}
+
+.header {
+  display: grid;
+  gap: 10px;
+}
+
+.eyebrow,
+.summaryCard span,
+.badge,
+.sideCard span {
+  color: #c79a3b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.header h1 {
+  font-size: 2.35rem;
+  line-height: 1.05;
+}
+
+.header p {
+  max-width: 780px;
+  color: #6b7280;
+  line-height: 1.65;
+}
+
+.summaryGrid,
+.contentGrid,
+.ruleList {
+  display: grid;
+  gap: 16px;
+}
+
+.summaryGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.summaryCard,
+.certificateCard,
+.sideCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 20px 36px rgba(15, 34, 51, 0.05);
+}
+
+.summaryCard {
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.summaryCard strong {
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.summaryCard p,
+.sideCard p,
+.ruleReady p,
+.rulePending p,
+.certificateCard p,
+.lessonBlock li {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.contentGrid {
+  grid-template-columns: minmax(0, 1.15fr) 320px;
+  align-items: start;
+}
+
+.certificateCard {
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cardHeader h2 {
+  margin: 10px 0 8px;
+  font-size: 1.75rem;
+}
+
+.codeBox {
+  min-width: 190px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #17324a 0%, #0f2233 100%);
+  color: #ffffff;
+}
+
+.codeBox small {
+  display: block;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+
+.codeBox strong {
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.ruleList {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ruleReady,
+.rulePending {
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.ruleReady {
+  background: #eef8f1;
+  border: 1px solid #cfead7;
+}
+
+.rulePending {
+  background: #fff7ed;
+  border: 1px solid #f4d9b7;
+}
+
+.ruleReady strong,
+.rulePending strong,
+.lessonBlock strong,
+.sideCard strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.lessonBlock {
+  padding: 20px;
+  border-radius: 18px;
+  background: #f7f9fc;
+}
+
+.lessonBlock ul {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding-left: 18px;
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primaryAction,
+.secondaryAction {
+  min-height: 44px;
+  display: inline-grid;
+  align-items: center;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.primaryAction {
+  background: #0b3b8c;
+  color: #ffffff;
+}
+
+.secondaryAction {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #233044;
+}
+
+.sidePanel {
+  display: grid;
+  gap: 16px;
+}
+
+.sideCard {
+  padding: 20px;
+}
+
+@media (max-width: 1100px) {
+  .summaryGrid,
+  .contentGrid,
+  .ruleList {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,160 @@
+.page {
+  padding: 28px;
+  display: grid;
+  gap: 22px;
+}
+
+.header {
+  display: grid;
+  gap: 10px;
+}
+
+.backLink,
+.inlineLink {
+  color: #0b3b8c;
+  font-weight: 800;
+}
+
+.eyebrow,
+.card span,
+.moduleCard span {
+  color: #c79a3b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.header h1 {
+  font-size: 2.15rem;
+}
+
+.header p,
+.card p,
+.moduleCard p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.actionRow,
+.grid,
+.moduleGrid,
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+.actionRow {
+  grid-template-columns: repeat(3, max-content);
+}
+
+.primaryAction,
+.secondaryAction {
+  min-height: 42px;
+  display: inline-grid;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.primaryAction {
+  background: #0b3b8c;
+  color: #ffffff;
+}
+
+.secondaryAction {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #233044;
+}
+
+.grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card,
+.moduleCard,
+.wideCard {
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(15, 34, 51, 0.05);
+}
+
+.card strong,
+.moduleCard strong,
+.wideCard strong {
+  display: block;
+  margin: 8px 0 10px;
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+.wideCard p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.moduleGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.moduleCard ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 18px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.helper {
+  color: #0b3b8c;
+  line-height: 1.6;
+  font-weight: 700;
+}
+
+.tableWrap {
+  overflow: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(15, 34, 51, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #eef2f7;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table th {
+  background: #f8fafc;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.table td {
+  color: #233044;
+}
+
+@media (max-width: 1100px) {
+  .grid,
+  .moduleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actionRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,343 @@
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.formSide {
+  display: flex;
+  justify-content: center;
+}
+
+.formWrap {
+  width: min(520px, calc(100% - 48px));
+  display: grid;
+  align-content: center;
+  gap: 28px;
+  padding: 48px 0;
+}
+
+.logo {
+  width: 160px;
+  height: auto;
+}
+
+.heading h1 {
+  margin-bottom: 10px;
+  color: #0f172a;
+  font-size: 2.05rem;
+  line-height: 1.08;
+}
+
+.heading p,
+.footerText,
+.keepRow small {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #d8dee6;
+}
+
+.tab,
+.tabActive {
+  padding: 12px 10px 14px;
+  border: 0;
+  background: transparent;
+  font-size: 0.98rem;
+  cursor: pointer;
+}
+
+.tabActive {
+  color: #0f766e;
+  border-bottom: 2px solid #0f766e;
+  font-weight: 700;
+}
+
+.tab {
+  color: #94a3b8;
+}
+
+.form {
+  display: grid;
+  gap: 22px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span,
+.keepRow strong {
+  color: #0f172a;
+}
+
+.field input {
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  color: #0f172a;
+  outline: none;
+}
+
+.field input::placeholder {
+  color: #94a3b8;
+}
+
+.keepRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.keepRow input {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  accent-color: #0f766e;
+}
+
+.keepRow span {
+  display: grid;
+  gap: 4px;
+}
+
+.primaryButton {
+  height: 50px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #177c6b 0%, #126457 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primaryButton:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.secondaryButton {
+  height: 50px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.inlineActions {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 12px;
+}
+
+.successText,
+.errorText {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.successText {
+  color: #0f766e;
+}
+
+.errorText {
+  color: #b42318;
+}
+
+.footerText {
+  text-align: center;
+}
+
+.footerText a {
+  color: #0f766e;
+  font-weight: 700;
+}
+
+.brandSide {
+  position: relative;
+  overflow: hidden;
+  background: #151c25;
+  color: #ffffff;
+}
+
+.brandGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: radial-gradient(circle at center, black 32%, transparent 78%);
+}
+
+.brandContent {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  padding: 48px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #12c38d;
+  font-size: 1.95rem;
+  font-weight: 700;
+}
+
+.stage {
+  position: relative;
+  width: min(560px, 100%);
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+}
+
+.bars {
+  position: absolute;
+  top: 30px;
+  display: flex;
+  gap: 18px;
+  align-items: end;
+  height: 170px;
+}
+
+.bars div {
+  width: 56px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.bars div:nth-child(1) {
+  height: 74px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(130, 139, 147, 0.34));
+}
+
+.bars div:nth-child(2) {
+  height: 156px;
+  background: linear-gradient(180deg, rgba(16, 195, 141, 0.94), rgba(11, 122, 89, 0.52));
+}
+
+.bars div:nth-child(3) {
+  height: 112px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(130, 139, 147, 0.34));
+}
+
+.portalMark {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: grid;
+  place-items: center;
+}
+
+.ringOuter,
+.ringInner {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.ringOuter {
+  inset: 0;
+  border: 20px solid rgba(18, 195, 141, 0.82);
+  border-right-color: rgba(255, 255, 255, 0.16);
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.ringInner {
+  inset: 56px;
+  border: 14px solid rgba(210, 160, 72, 0.94);
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.portalIcon {
+  width: 112px;
+  height: auto;
+  opacity: 0.95;
+}
+
+.message {
+  max-width: 480px;
+  text-align: center;
+}
+
+.message p {
+  color: #ffffff;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.message h2 {
+  margin: 8px 0 10px;
+  color: #12c38d;
+  font-size: clamp(3rem, 5vw, 4.9rem);
+  line-height: 0.9;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.message span {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: clamp(1.7rem, 4vw, 3.4rem);
+  line-height: 0.92;
+  font-style: italic;
+  font-weight: 900;
+}
+
+@media (max-width: 980px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .brandSide,
+  .brandContent {
+    min-height: 540px;
+  }
+}
+
+@media (max-width: 640px) {
+  .formWrap {
+    width: min(100% - 24px, 520px);
+    padding: 28px 0;
+  }
+
+  .brandContent {
+    padding: 28px 18px;
+  }
+
+  .portalMark {
+    width: 190px;
+    height: 190px;
+  }
+
+  .ringInner {
+    inset: 44px;
+  }
+
+  .inlineActions {
+    grid-template-columns: 1fr;
+  }
+}
