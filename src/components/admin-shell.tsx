@@ -1,29 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { LogoutButton } from "@/components/logout-button";
+import { UserMenu } from "@/components/user-menu";
 import styles from "./admin-shell.module.css";
 
 const items = [
-  { label: "Home", href: "/admin", icon: "⌂" },
-  { label: "Painel de Engajamento", href: "/admin/secao/painel-engajamento", icon: "⌁" },
-  { label: "Certificados", href: "/admin/certificados", icon: "✦" },
-  { label: "Meus Cursos", href: "/admin/secao/meus-cursos", icon: "▥" },
-  { label: "Aulas ao Vivo", href: "/admin/secao/aulas-ao-vivo", icon: "▶" },
-  { label: "Gamificacao", href: "/admin/secao/gamificacao", icon: "★" },
-  { label: "Comentarios", href: "/admin/secao/comentarios", icon: "✎" },
-  { label: "Membros", href: "/admin/secao/membros", icon: "☰" },
-  { label: "Combos", href: "/admin/secao/combos", icon: "◫" },
-  { label: "Gestao de Midias", href: "/admin/secao/gestao-de-midias", icon: "▤" },
+  { label: "Home", href: "/admin", icon: "H" },
+  { label: "Painel de Engajamento", href: "/admin/secao/painel-engajamento", icon: "E" },
+  { label: "Certificados", href: "/admin/certificados", icon: "C" },
+  { label: "Meus Cursos", href: "/admin/secao/meus-cursos", icon: "M" },
+  { label: "Aulas ao Vivo", href: "/admin/secao/aulas-ao-vivo", icon: "A" },
+  { label: "Gamificacao", href: "/admin/secao/gamificacao", icon: "G" },
+  { label: "Comentarios", href: "/admin/secao/comentarios", icon: "O" },
+  { label: "Membros", href: "/admin/secao/membros", icon: "U" },
+  { label: "Combos", href: "/admin/secao/combos", icon: "B" },
+  { label: "Gestao de Midias", href: "/admin/secao/gestao-de-midias", icon: "D" },
 ];
 
 export function AdminShell({
   activeHref,
   userEmail,
+  userName,
   children,
 }: {
   activeHref: string;
   userEmail: string;
+  userName?: string;
   children: ReactNode;
 }) {
   return (
@@ -56,13 +58,15 @@ export function AdminShell({
       <section className={styles.main}>
         <header className={styles.topbar}>
           <div className={styles.searchWrap}>
-            <input type="search" placeholder="Pesquise por cursos, modulos ou aulas" className={styles.search} />
+            <input
+              type="search"
+              placeholder="Pesquise por cursos, modulos ou aulas"
+              className={styles.search}
+            />
           </div>
 
           <div className={styles.topbarActions}>
-            <span className={styles.notification}>2</span>
-            <div className={styles.avatar}>{userEmail.slice(0, 1).toUpperCase()}</div>
-            <LogoutButton />
+            <UserMenu userEmail={userEmail} userName={userName} />
           </div>
         </header>
 

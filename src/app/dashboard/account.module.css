@@ -1,0 +1,201 @@
+.page {
+  padding: 28px;
+  display: grid;
+  gap: 22px;
+}
+
+.header {
+  display: grid;
+  gap: 10px;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+}
+
+.header p,
+.tabPanel p,
+.profileField span,
+.infoCard p,
+.platformCard p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab,
+.tabActive {
+  min-height: 42px;
+  display: inline-grid;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.tab {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+}
+
+.tabActive {
+  background: #eef4ff;
+  border: 1px solid rgba(11, 59, 140, 0.12);
+  color: #0b3b8c;
+}
+
+.profileGrid,
+.infoGrid,
+.platformGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.profileGrid {
+  grid-template-columns: 300px 1fr;
+}
+
+.avatarCard,
+.tabPanel,
+.infoCard,
+.platformCard {
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 16px 36px rgba(15, 34, 51, 0.05);
+}
+
+.avatarCard {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.avatarCircle {
+  width: 132px;
+  height: 132px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #0b2f73;
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.softButton,
+.primaryButton {
+  min-height: 44px;
+  display: inline-grid;
+  align-items: center;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+.softButton {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #233044;
+}
+
+.primaryButton {
+  border: 0;
+  background: #0b3b8c;
+  color: #ffffff;
+}
+
+.hint {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.fieldList {
+  display: grid;
+  gap: 16px;
+}
+
+.profileField {
+  display: grid;
+  gap: 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.profileField strong,
+.infoCard strong,
+.platformCard strong {
+  color: #111827;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.infoGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.infoCard span,
+.platformCard span,
+.badge {
+  color: #c79a3b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.courseList {
+  display: grid;
+  gap: 14px;
+}
+
+.courseCard {
+  padding: 18px;
+  border-radius: 18px;
+  background: #f8fafc;
+}
+
+.courseCard strong {
+  display: block;
+  margin: 6px 0 8px;
+  font-size: 1rem;
+}
+
+.courseMeta {
+  color: #0b3b8c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.inlineLink {
+  color: #0b3b8c;
+  font-weight: 800;
+}
+
+.platformGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.platformActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+@media (max-width: 1100px) {
+  .profileGrid,
+  .infoGrid,
+  .platformGrid {
+    grid-template-columns: 1fr;
+  }
+}

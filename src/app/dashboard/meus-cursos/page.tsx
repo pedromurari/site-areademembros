@@ -32,6 +32,8 @@ export default async function CoursesPage() {
               <Link href={`/dashboard/curso/${course.slug}`} className={styles.cardLink}>
                 <div className={styles.cardVisual}>
                   <small>{course.badge}</small>
+                  <strong className={styles.coverTitle}>{course.title}</strong>
+                  <em className={styles.coverSubtitle}>Acesse aqui materiais, aulas gravadas e bonus.</em>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                 </div>
                 <p className={styles.cardProgress}>Progresso: {course.progress}%</p>

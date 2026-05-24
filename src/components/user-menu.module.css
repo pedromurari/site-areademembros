@@ -1,0 +1,183 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #233044;
+}
+
+.notification small {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  min-width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.avatar,
+.profileAvatar {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #0b2f73;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.caret {
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: min(310px, calc(100vw - 32px));
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.16);
+  z-index: 30;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.profile strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.profile p {
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.menuList {
+  display: grid;
+  gap: 6px;
+  padding-top: 12px;
+}
+
+.menuItem,
+.menuButton {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 12px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.menuButton {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.menuItem:hover,
+.menuButton:hover {
+  background: #f8fafc;
+}
+
+.iconWrap {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #f4f7fb;
+  color: #0b2f73;
+}
+
+@media (max-width: 560px) {
+  .wrapper {
+    gap: 6px;
+  }
+
+  .notification {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .caret {
+    width: 10px;
+    overflow: hidden;
+    font-size: 0.72rem;
+  }
+
+  .trigger {
+    gap: 5px;
+  }
+
+  .menu {
+    top: calc(100% + 12px);
+    right: -3px;
+    width: min(292px, calc(100vw - 32px));
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .profile strong {
+    font-size: 0.92rem;
+  }
+
+  .profile p {
+    font-size: 0.78rem;
+  }
+
+  .menuItem,
+  .menuButton {
+    min-height: 44px;
+    padding: 9px 6px;
+    font-size: 0.92rem;
+  }
+}
