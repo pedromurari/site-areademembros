@@ -6,14 +6,10 @@ import styles from "./admin-shell.module.css";
 
 const items = [
   { label: "Home", href: "/admin", icon: "H" },
-  { label: "Painel de Engajamento", href: "/admin/secao/painel-engajamento", icon: "E" },
   { label: "Certificados", href: "/admin/certificados", icon: "C" },
   { label: "Meus Cursos", href: "/admin/secao/meus-cursos", icon: "M" },
-  { label: "Aulas ao Vivo", href: "/admin/secao/aulas-ao-vivo", icon: "A" },
-  { label: "Gamificacao", href: "/admin/secao/gamificacao", icon: "G" },
-  { label: "Comentarios", href: "/admin/secao/comentarios", icon: "O" },
+  { label: "Aulas Ao Vivo", href: "/admin/secao/aulas-ao-vivo", icon: "A" },
   { label: "Membros", href: "/admin/secao/membros", icon: "U" },
-  { label: "Combos", href: "/admin/secao/combos", icon: "B" },
   { label: "Gestao de Midias", href: "/admin/secao/gestao-de-midias", icon: "D" },
 ];
 
