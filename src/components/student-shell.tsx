@@ -27,10 +27,10 @@ export function StudentShell({
       <aside className={styles.sidebar} data-student-sidebar>
         <div className={styles.sidebarBrand}>
           <Image
-            src="/logo-despertamente.png"
+            src="/despertamente-simbolo.png"
             alt="Instituto Despertamente"
             width={148}
-            height={62}
+            height={148}
             className={styles.logo}
           />
         </div>
@@ -73,12 +73,21 @@ export function StudentShell({
 
           <Link href="/dashboard" className={styles.mobileBrand} aria-label="Portal do Aluno IDM">
             <Image
-              src="/logo-despertamente.png"
-              alt="Instituto Despertamente"
-              width={124}
+              src="/despertamente-simbolo.png"
+              alt=""
+              width={52}
               height={52}
-              className={styles.mobileLogo}
+              className={styles.mobileLogoSymbol}
+              aria-hidden="true"
             />
+            <span className={styles.mobileLogoText} aria-hidden="true">
+              <span className={styles.mobileLogoTop}>Instituto</span>
+              <span className={styles.mobileLogoName}>
+                <span>desperta</span>
+                <strong>MENTE</strong>
+              </span>
+              <span className={styles.mobileLogoTagline}>Psicanalise - PNL - Terapia Breve</span>
+            </span>
           </Link>
 
           <div className={styles.searchWrap}>

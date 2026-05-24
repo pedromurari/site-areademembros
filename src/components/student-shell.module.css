@@ -17,12 +17,12 @@
 
 .sidebarBrand {
   display: grid;
-  justify-items: start;
+  justify-items: center;
   padding: 8px 10px 16px;
 }
 
 .logo {
-  width: 148px;
+  width: 96px;
   height: auto;
 }
 
@@ -134,13 +134,61 @@
   }
 
   .mobileBrand {
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #0b2f73;
+    text-decoration: none;
   }
 
-  .mobileLogo {
-    width: 126px;
-    height: auto;
+  .mobileLogoSymbol {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    object-fit: contain;
+  }
+
+  .mobileLogoText {
+    min-width: 0;
+    display: grid;
+    align-content: center;
+    line-height: 1;
+  }
+
+  .mobileLogoTop {
+    margin-left: 5px;
+    color: #0b2f73;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .mobileLogoName {
+    display: flex;
+    align-items: baseline;
+    color: #f8b400;
+    font-size: 1.12rem;
+    font-weight: 500;
+    letter-spacing: -0.055em;
+    line-height: 0.9;
+    white-space: nowrap;
+  }
+
+  .mobileLogoName strong {
+    color: #0b2f73;
+    font-size: 1.03em;
+    font-weight: 900;
+    letter-spacing: -0.07em;
+  }
+
+  .mobileLogoTagline {
+    color: #0b2f73;
+    font-size: 0.45rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
   }
 
   .searchWrap {
@@ -247,7 +295,39 @@
     padding: 0 12px;
   }
 
-  .mobileLogo {
-    width: 116px;
+  .mobileBrand {
+    gap: 5px;
+  }
+
+  .mobileLogoSymbol {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mobileLogoTop {
+    font-size: 0.45rem;
+  }
+
+  .mobileLogoName {
+    font-size: 0.98rem;
+  }
+
+  .mobileLogoTagline {
+    font-size: 0.38rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .mobileLogoSymbol {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mobileLogoName {
+    font-size: 0.9rem;
+  }
+
+  .mobileLogoTagline {
+    display: none;
   }
 }
