@@ -12,10 +12,18 @@ function sortByOrder(items: AdminNavigationItem[]) {
 }
 
 function reorder(items: AdminNavigationItem[], fromIndex: number, toIndex: number) {
+  if (fromIndex === toIndex) {
+    return items;
+  }
+
   const next = [...items];
   const [item] = next.splice(fromIndex, 1);
   next.splice(toIndex, 0, item);
-  return next.map((entry, index) => ({ ...entry, sortOrder: index + 1 }));
+
+  return next.map((entry, index) => ({
+    ...entry,
+    sortOrder: index + 1,
+  }));
 }
 
 export function AdminSidebarNavigation({
@@ -32,29 +40,27 @@ export function AdminSidebarNavigation({
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("");
+  const [feedback, setFeedback] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   function startEditing() {
-    setDragIndex(null);
-    setHoverIndex(null);
     setIsEditing(true);
-    setStatusMessage("Arraste os menus para redefinir a ordem.");
+    setFeedback("");
     setErrorMessage("");
   }
 
-  function resetOrder() {
+  function restoreOrder() {
     setMenuItems(initialItems);
     setDragIndex(null);
     setHoverIndex(null);
-    setStatusMessage("Ordem restaurada para o padrao atual.");
+    setFeedback("Ordem restaurada.");
     setErrorMessage("");
   }
 
   async function saveOrder() {
     setIsSaving(true);
     setErrorMessage("");
-    setStatusMessage("");
+    setFeedback("");
 
     const response = await fetch("/api/admin/navigation", {
       method: "PUT",
@@ -73,23 +79,18 @@ export function AdminSidebarNavigation({
 
     if (!response.ok) {
       const payload = (await response.json().catch(() => null)) as { error?: string } | null;
-      setErrorMessage(payload?.error ?? "Nao foi possivel salvar a nova ordem do menu.");
+      setErrorMessage(payload?.error ?? "Nao foi possivel salvar a nova ordem.");
       return;
     }
 
     setIsEditing(false);
-    setStatusMessage("Ordem do menu salva com sucesso.");
+    setDragIndex(null);
+    setHoverIndex(null);
+    setFeedback("Ordem salva com sucesso.");
     router.refresh();
   }
 
-  function moveItem(index: number, targetIndex: number) {
-    if (index === targetIndex || targetIndex < 0 || targetIndex >= menuItems.length) return;
-    setMenuItems((current) => reorder(current, index, targetIndex));
-    setDragIndex(targetIndex);
-    setHoverIndex(targetIndex);
-  }
-
-  function handleToggle() {
+  function toggleEditor() {
     if (isEditing) {
       void saveOrder();
       return;
@@ -98,13 +99,30 @@ export function AdminSidebarNavigation({
     startEditing();
   }
 
+  function moveItem(index: number, targetIndex: number) {
+    if (index === targetIndex || targetIndex < 0 || targetIndex >= menuItems.length) {
+      return;
+    }
+
+    setMenuItems((current) => reorder(current, index, targetIndex));
+    setDragIndex(targetIndex);
+    setHoverIndex(targetIndex);
+  }
+
   function handleDragStart(index: number) {
-    if (!isEditing) return;
+    if (!isEditing) {
+      return;
+    }
+
     setDragIndex(index);
+    setHoverIndex(index);
   }
 
   function handleDragEnter(index: number) {
-    if (!isEditing || dragIndex === null || dragIndex === index) return;
+    if (!isEditing || dragIndex === null || dragIndex === index) {
+      return;
+    }
+
     moveItem(dragIndex, index);
   }
 
@@ -116,55 +134,47 @@ export function AdminSidebarNavigation({
   return (
     <div className={styles.shell}>
       <div className={styles.toolbar}>
-        <div className={styles.toolbarLeft}>
-          <span className={styles.toolbarLabel}>Navegacao do ADM</span>
-          <span className={styles.toolbarHint}>
-            {isEditing
-              ? "Arraste os menus para definir a ordem."
-              : "Clique em reordenar para liberar o arraste dos menus."}
-          </span>
-        </div>
-
-        <div className={styles.toolbarActions}>
-          {isEditing ? (
-            <button type="button" className={styles.resetButton} onClick={resetOrder}>
-              Restaurar
-            </button>
-          ) : null}
-
-          <button
-            type="button"
-            className={`${styles.toggleButton} ${isEditing ? styles.toggleButtonEditing : styles.toggleButtonPrimary}`}
-            onClick={handleToggle}
-            disabled={isSaving}
-          >
-            <span className={styles.toggleIcon}>
-              <AdminMenuIcon kind="navigation" />
-            </span>
-            {isSaving ? "Salvando..." : isEditing ? "Salvar ordem" : "Reordenar"}
+        {isEditing ? (
+          <button type="button" className={styles.restoreButton} onClick={restoreOrder} disabled={isSaving}>
+            Restaurar
           </button>
-        </div>
+        ) : null}
+
+        <button
+          type="button"
+          className={`${styles.toggleButton} ${isEditing ? styles.toggleButtonSaving : styles.toggleButtonIdle}`}
+          onClick={toggleEditor}
+          disabled={isSaving}
+        >
+          <span className={styles.toggleIcon}>
+            <AdminMenuIcon kind={isEditing ? "save" : "edit"} />
+          </span>
+          {isSaving ? "Salvando..." : isEditing ? "Salvar" : "Organizar"}
+        </button>
       </div>
 
-      {statusMessage ? <div className={styles.status}>{statusMessage}</div> : null}
-      {errorMessage ? <div className={`${styles.status} ${styles.error}`}>{errorMessage}</div> : null}
+      {feedback ? <div className={styles.statusLine}>{feedback}</div> : null}
+      {errorMessage ? <div className={`${styles.statusLine} ${styles.errorLine}`}>{errorMessage}</div> : null}
 
-      <nav className={styles.list}>
+      <nav className={styles.list} aria-label="Menu lateral do ADM">
         {menuItems.map((item, index) => {
-          const stateClass = `${isEditing ? styles.itemButton : styles.itemLink} ${
+          const stateClass = `${styles.item} ${isEditing ? styles.itemButton : ""} ${isEditing ? styles.itemEdit : styles.itemView} ${
             activeHref === item.href ? styles.itemActive : ""
           } ${dragIndex === index ? styles.itemDragging : ""} ${hoverIndex === index ? styles.itemHover : ""}`.trim();
 
           const content = (
             <>
+              {isEditing ? (
+                <span className={styles.dragHandle} aria-hidden="true">
+                  <AdminMenuIcon kind="grip" />
+                </span>
+              ) : null}
+
               <span className={styles.iconWrap}>
                 <AdminMenuIcon kind={item.iconKey} />
               </span>
-              <div className={styles.content}>
-                <strong>{item.label}</strong>
-                <span>{item.href}</span>
-              </div>
-              {isEditing ? <span className={styles.grip}>:::</span> : null}
+
+              <span className={styles.label}>{item.label}</span>
             </>
           );
 

@@ -64,6 +64,33 @@ export function AdminMenuIcon({ kind }: { kind: AdminMenuIconKind }) {
           <circle cx="18" cy="12" r="1.8" />
         </svg>
       );
+    case "edit":
+      return (
+        <svg {...common}>
+          <path d="M4 20h4" />
+          <path d="M6 16.5 15.5 7a2.1 2.1 0 0 1 3 3L9 19.5 4 20l.5-5Z" />
+          <path d="m14.5 8 2.5 2.5" />
+        </svg>
+      );
+    case "save":
+      return (
+        <svg {...common}>
+          <path d="M5 5h11l3 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
+          <path d="M8 5v6h7V5" />
+          <path d="M8 18h8" />
+        </svg>
+      );
+    case "grip":
+      return (
+        <svg {...common}>
+          <circle cx="8" cy="7" r="1.1" />
+          <circle cx="16" cy="7" r="1.1" />
+          <circle cx="8" cy="12" r="1.1" />
+          <circle cx="16" cy="12" r="1.1" />
+          <circle cx="8" cy="17" r="1.1" />
+          <circle cx="16" cy="17" r="1.1" />
+        </svg>
+      );
     case "home":
     default:
       return (

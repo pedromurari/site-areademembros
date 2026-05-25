@@ -5,7 +5,10 @@ export type AdminMenuIconKind =
   | "live"
   | "members"
   | "media"
-  | "navigation";
+  | "navigation"
+  | "edit"
+  | "save"
+  | "grip";
 
 export type AdminNavigationItem = {
   slug: string;
