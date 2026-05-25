@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { ReactNode } from "react";
-import { AdminMenuIcon } from "@/components/admin-menu-icon";
+import { AdminSidebarNavigation } from "@/components/admin-sidebar-navigation";
 import { IdmWordmark } from "@/components/idm-wordmark";
 import { UserMenu } from "@/components/user-menu";
 import { DEV_LOGIN } from "@/lib/dev-auth";
@@ -35,22 +34,13 @@ export async function AdminShell({
           <IdmWordmark compact className={styles.sidebarWordmark} />
         </div>
 
-        <nav className={styles.sidebarNav}>
-          {navigationResult
-            .filter((item) => item.isVisible)
-            .map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={activeHref === item.href ? styles.navItemActive : styles.navItem}
-            >
-              <span className={styles.navIcon}>
-                <AdminMenuIcon kind={item.iconKey} />
-              </span>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <AdminSidebarNavigation
+          key={navigationResult
+            .map((item) => `${item.slug}:${item.label}:${item.href}:${item.iconKey}:${item.sortOrder}:${item.isVisible}`)
+            .join("|")}
+          items={navigationResult.filter((item) => item.isVisible)}
+          activeHref={activeHref}
+        />
       </aside>
 
       <section className={styles.main}>
